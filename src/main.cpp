@@ -1,21 +1,13 @@
 #include <SFML/Graphics.hpp>
-
+#include "engine/Application.hpp"
+#include "scenes/TestScene.hpp"
+#include <optional>
+#include <memory>
 int main()
 {
-	sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
-	sf::CircleShape shape( 100.f );
-	shape.setFillColor( sf::Color::Green );
-
-	while ( window.isOpen() )
-	{
-		while ( const std::optional event = window.pollEvent() )
-		{
-			if ( event->is<sf::Event::Closed>() )
-				window.close();
-		}
-
-		window.clear();
-		window.draw( shape );
-		window.display();
-	}
+	sf::Vector2u windowSize(800,600);
+	Application app(windowSize,"SFML Practice");
+	std::unique_ptr<TestScene> testScene = std::make_unique<TestScene>(app.getWindow());
+	app.setScene(static_cast<Scene*>(testScene.get()));
+	app.run();
 }
