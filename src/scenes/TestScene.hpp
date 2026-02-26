@@ -12,4 +12,5 @@ class TestScene : public Scene{
         TestScene(sf::RenderWindow& window);
         virtual ~TestScene();
         sf::Vector2f Pos={400.f,300.f};
+        float deltaTime=0.f;
 };

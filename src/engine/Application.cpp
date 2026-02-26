@@ -23,7 +23,7 @@ void Application::run()
     while(window.isOpen())
     {
         processEvents();
-        float deltaTime=clock.restart().asSeconds();
+        float deltaTime=1/60.f;
         fixedUpdate(deltaTime);
         render();
     }
